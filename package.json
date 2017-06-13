@@ -1,0 +1,55 @@
+{
+  "name": "angularts-wizard",
+  "version": "1.0.0",
+  "description": "Angular 2+ form wizard helper. This is a module for making form wizard",
+  "main": "index.js",
+  "scripts": {
+    "test": "\"echo \"Error: no test specified\" && exit 1\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uuuchit/angular-wizard.git"
+  },
+  "keywords": [
+    "angular",
+    "wizard"
+  ],
+  "author": "Uchit Kumar <uuuchit@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/uuuchit/angular-wizard/issues"
+  },
+  "homepage": "https://github.com/uuuchit/angular-wizard#readme",
+  "devDependencies": {
+    "mocha": "^3.4.2",
+    "@angular/common": "^2.3.1",
+    "@angular/compiler": "^2.3.1",
+    "@angular/compiler-cli": "^2.3.1",
+    "@angular/core": "^2.3.1",
+    "@angular/platform-browser": "^2.3.1",
+    "@angular/platform-browser-dynamic": "^2.3.1",
+    "@angular/platform-server": "^2.3.1",
+    "@types/es6-shim": "^0.31.32",
+    "@types/jasmine": "^2.5.42",
+    "@types/selenium-webdriver": "^2.53.39",
+    "awesome-typescript-loader": "^3.0.4-rc.2",
+    "codelyzer": "^0.0.28",
+    "istanbul-instrumenter-loader": "^2.0.0",
+    "jasmine-core": "^2.5.2",
+    "karma": "^1.4.1",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-coverage": "^1.1.1",
+    "karma-jasmine": "^1.1.0",
+    "karma-mocha-reporter": "^2.2.2",
+    "karma-remap-coverage": "^0.1.4",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-webpack": "^2.0.2",
+    "rxjs": "^5.0.1",
+    "source-map-loader": "^0.1.6",
+    "ts-helpers": "^1.1.2",
+    "tslint": "^3.15.1",
+    "typescript": "^2.1.6",
+    "webpack": "^2.2.1",
+"zone.js": "0.7.2"
+  }
+}
