@@ -1,0 +1,20 @@
+.uk-wizard{
+        border: 1px solid #ccc;
+        border-radius: 2px;
+        margin: 5px;
+        padding: 5px;
+      }
+      .uk-wizard-nav{
+        width: 100%;
+
+      }
+      .uk-wizard-steps{
+        width: 100%
+      }
+      li{
+        display: inline-block;
+        min-width: 100px;
+        overflow: hidden;
+        text-align: center;
+        border-bottom: 3px solid;
+      }
