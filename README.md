@@ -10,6 +10,7 @@ Now import WizardModule in angular module of your application.
 
 Uses: 
 In template. 
+<pre>
 <wizard>
   <step [title]="Step one">
     <h2>Form will be here</h2>
@@ -18,3 +19,4 @@ In template.
     <h2>Second part of Form will be here</h2>
   </step>
 </wizard>
+</pre>
