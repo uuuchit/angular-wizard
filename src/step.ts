@@ -8,8 +8,9 @@ import { Component, OnInit, Input,EventEmitter, Output } from '@angular/core';
       <ng-content></ng-content>
     </div>
     <div class="step-footer">
-      <button id="uk-back" (click)="backClicked()">Back</button>
-      <button id="uk-next" (click)="nextClicked()">Next</button>
+      <button *ngIf="!firstStep" id="uk-back" (click)="backClicked()">Back</button>
+      <button  *ngIf="!lastStep" id="uk-next" (click)="nextClicked()">Next</button>
+      <button  *ngIf="lastStep" id="uk-next" (click)="nextClicked()">Finish</button>
       <div class="clear"></div>
     </div>
 
@@ -44,12 +45,14 @@ import { Component, OnInit, Input,EventEmitter, Output } from '@angular/core';
 export class StepComponent implements OnInit {
   @Input() title?: string;
   @Input() activeStep?: boolean = false;
+  @Input() firstStep?: boolean = false;
+  @Input() lastStep?: boolean = false;
   constructor() { }
   @Output() onBack = new EventEmitter<this>();
 
   @Output() onNext = new EventEmitter<this>();
 
-  backClicked(){
+  backClicked() {
     this.onBack.emit(this);
   }
   nextClicked(){
