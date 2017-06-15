@@ -1,4 +1,4 @@
-import { Component, ContentChildren, QueryList, AfterContentInit, Output} from '@angular/core';
+import { Component, ContentChildren, QueryList, AfterContentInit, Input, Output} from '@angular/core';
 import { StepComponent } from './step';
 
 
@@ -8,9 +8,14 @@ import { StepComponent } from './step';
         <div class="uk-wizard">
             <div class="uk-wizard-nav">
                 <ul>
-                  <li *ngFor="let item of items" (click)="navClicked(item.id)" [style.width.%]="navWidth">
+                  <li *ngFor="let item of items" (click)="navClicked(item.id)"
+                   [style.width.%]="navWidth">
+                   <div class="uk-li" [style.border-bottom-color]="color">
                     <span *ngIf="item.step.title">{{item.step.title}}</span>
                     <span *ngIf="!item.step.title">Step {{item.id +1}}</span>
+                   </div>
+                   <div class="uk-overlay" [class.active]="item.id===currentStepIndex">
+                   </div>
                   </li>
                 </ul>
             </div>
@@ -26,21 +31,44 @@ import { StepComponent } from './step';
       }
       .uk-wizard-nav{
         width: 100%;
-
       }
       .uk-wizard-steps{
         width: 100%
       }
       ul{
         padding: 0px;
+        margin: 0px;
       }
       li{
         display: inline-block;
         min-width: 100px;
         overflow: hidden;
-        text-align: center;
+        position: relative;
+      }
+      .uk-li{
+        width: 100%;
         border-bottom: 5px solid;
-        padding: 5px 0px 5px 0px;
+        padding: 10px 0px 5px 0px;
+        text-align: center;
+      }
+      li:hover{
+        cursor:pointer;
+      }
+      .uk-overlay{
+        position: absolute;
+        bottom: 0px;
+        right: 0px;
+        width: 100%;
+        height: 5px;
+        opacity: .8;
+        background-color: #ccc;
+      }
+      .uk-overlay.active{
+        opacity: 0.0;
+      }
+      :host >>> #uk-back, :host >>> #uk-next{
+        min-width: 50px;
+        padding: 5px;
       }
 
     `]
@@ -51,6 +79,7 @@ export class WizardComponent implements AfterContentInit{
    currentStepIndex: number = 0;
    currentStep: string;
    navWidth: number;
+   @Input() color: string = 'blue';
    @ContentChildren(StepComponent) steps: QueryList<StepComponent>;
 
    navClicked(id: number) {
@@ -64,9 +93,11 @@ export class WizardComponent implements AfterContentInit{
      let i = 0;
     this.items = this.steps.map((r) => { return {step: r, id: i++}; });
     this.items[this.currentStepIndex].step.activeStep = true; // setting default step as active step.
-    this.navWidth = 100/this.items.length;
+    this.items[0].step.firstStep = true;
+    this.items[this.items.length - 1].step.lastStep = true;
+    this.navWidth = 100/ this.items.length;
     this.steps.forEach((r) => {
-      r.onBack.subscribe((title: StepComponent) =>{
+      r.onBack.subscribe((title: StepComponent) => {
         if(this.currentStepIndex === 0){
           console.log("you cannot go back from here!!");
         }
@@ -78,8 +109,8 @@ export class WizardComponent implements AfterContentInit{
           console.log(this.currentStep);
         }
       });
-      r.onNext.subscribe((title : StepComponent) =>{
-        if(this.currentStepIndex == this.items.length-1){
+      r.onNext.subscribe((title : StepComponent) => {
+        if(this.currentStepIndex == this.items.length - 1){
           //TODO call on finish
           console.log("Finished");
         }
