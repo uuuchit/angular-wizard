@@ -21,6 +21,7 @@ In template.
   </step>
 </wizard>
 ```
+[title] is optional. Default value is Step 1  Step 2 and so on. 
 
 You can set color of steps navigation bottom bar . 
 Simply pass  [color]="#ccc"  -- color of your choice in wizard tag. see above template for example. default color is blue. 
