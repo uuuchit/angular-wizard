@@ -12,7 +12,7 @@ Now import WizardModule in angular module of your application.
 Uses: 
 In template. 
 ```
-<wizard>
+<wizard [color]="#ccc">
   <step [title]="Step one">
     <h2>Form will be here</h2>
   </step>
@@ -23,4 +23,5 @@ In template.
 ```
 
 You can set color of steps navigation bottom bar . 
-Simply pass  [color]="#ccc"  -- color of your choice in <wizard> 
+Simply pass  [color]="#ccc"  -- color of your choice in wizard tag. see above template for example. default color is blue. 
+For button style add global style of button. 
