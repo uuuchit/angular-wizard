@@ -21,3 +21,6 @@ In template.
   </step>
 </wizard>
 ```
+
+You can set color of steps navigation bottom bar . 
+Simply pass  [color]="#ccc"  -- color of your choice in <wizard> 
