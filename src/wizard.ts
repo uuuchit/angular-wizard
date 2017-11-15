@@ -126,6 +126,7 @@ export class WizardComponent implements AfterContentInit{
           console.log(this.currentStep);
         }
 
+        
       });
       r.onNext.subscribe((title : StepComponent) => {
         if(this.currentStepIndex == this.items.length - 1){
