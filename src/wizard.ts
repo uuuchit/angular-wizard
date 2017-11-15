@@ -1,4 +1,4 @@
-import { Component, ContentChildren, QueryList, AfterContentInit, Input, Output} from '@angular/core';
+import { Component, ContentChildren, QueryList, AfterContentInit,EventEmitter, Input, Output} from '@angular/core';
 import { StepComponent } from './step';
 
 
@@ -81,13 +81,30 @@ export class WizardComponent implements AfterContentInit{
    navWidth: number;
    @Input() color: string = 'blue';
    @ContentChildren(StepComponent) steps: QueryList<StepComponent>;
-
+  @Output() onFinish = new EventEmitter<this>();
    navClicked(id: number) {
     this.items[this.currentStepIndex].step.activeStep = false;
     this.currentStepIndex = id;
     this.currentStep = this.items[id];
     this.items[this.currentStepIndex].step.activeStep = true;
     console.log(this.currentStep);
+   }
+    goto(id: number) {
+      if ( id >= this.items.length){
+         this.onFinish.emit(this.items);
+      }
+      else if(id < 0)
+        {
+        this.goto(0)
+      }
+      else{
+        this.items[this.currentStepIndex].step.activeStep = false;
+        this.currentStepIndex = id;
+        this.currentStep = this.items[id];
+        this.items[this.currentStepIndex].step.activeStep = true;
+        console.log(this.currentStep);
+      }
+
    }
    ngAfterContentInit() {
      let i = 0;
@@ -108,10 +125,12 @@ export class WizardComponent implements AfterContentInit{
           this.items[this.currentStepIndex].step.activeStep = true;
           console.log(this.currentStep);
         }
+
       });
       r.onNext.subscribe((title : StepComponent) => {
         if(this.currentStepIndex == this.items.length - 1){
           //TODO call on finish
+          this.onFinish.emit(this.items);
           console.log("Finished");
         }
         else{

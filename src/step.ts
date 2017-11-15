@@ -47,6 +47,7 @@ export class StepComponent implements OnInit {
   @Input() activeStep?: boolean = false;
   @Input() firstStep?: boolean = false;
   @Input() lastStep?: boolean = false;
+   @Input() shouldEnter?: boolean = true;
   constructor() { }
   @Output() onBack = new EventEmitter<this>();
 
