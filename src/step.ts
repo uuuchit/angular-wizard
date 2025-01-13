@@ -47,7 +47,9 @@ export class StepComponent implements OnInit {
   @Input() activeStep?: boolean = false;
   @Input() firstStep?: boolean = false;
   @Input() lastStep?: boolean = false;
-   @Input() shouldEnter?: boolean = true;
+  @Input() shouldEnter?: boolean = true;
+  @Input() disabled?: boolean;
+  @Input() customValidation?: () => boolean;
   constructor() { }
   @Output() onBack = new EventEmitter<this>();
 
@@ -57,6 +59,9 @@ export class StepComponent implements OnInit {
     this.onBack.emit(this);
   }
   nextClicked(){
+    if (this.customValidation && !this.customValidation()) {
+      return;
+    }
     this.onNext.emit(this);
   }
   ngOnInit() { }
